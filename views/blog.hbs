@@ -1,0 +1,22 @@
+
+<title>BH Blog</title>
+{{> nav}}
+<main>
+    <div id="articles">
+        {{#each data}}
+            {{#if @first}}
+            <a href="/article/{{_id}}" class="article doubleCol">
+                <div class="imgContainer"><img src="data:image/png;base64,{{image}}"></img></div>
+                <h2>{{headline}}</h2>
+                <p>{{content}}</p>
+            </a>
+            {{else}}
+            <a href="/article/{{_id}}" class="article">
+                <div class="imgContainer"><img src="data:image/png;base64,{{image}}"></img></div>
+                <h2>{{headline}}</h2>
+                <p>{{content}}</p>
+            </a>
+            {{/if}}
+        {{/each}}
+    </div>
+</main>

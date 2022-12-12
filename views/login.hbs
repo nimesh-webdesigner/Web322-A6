@@ -1,0 +1,43 @@
+
+<head>
+{{>header}}
+</head>
+<body>
+
+{{>nav}}
+
+<!-- Start Login Form -->
+	<div class="container">
+		<div class="row">
+	<div class="mainheading">
+		<h1>Login</h1>
+	</div>
+	</div>
+	</div>
+
+<div class="container">
+	<div class="row">
+          <form id="form" method="post" action="/login-user" class="form-center">
+          <div class="form-group was-validated">
+            <input id="username" class="middleCol" name="username" type="username" placeholder="Username"/>
+            </div>
+            <div class="form-group was-validated">
+            <input id="password" class="middleCol" name="password" type="password" placeholder="Password"/>
+            </div>
+            {{#if error}}
+            <p style="grid-column: 1/5" class="errorText">{{error_msg}}</p>
+            {{/if}}
+            <div class="form-group was-validated">
+            <input type="submit" value="Login" class="btn btn-primary"/>
+            </div>
+            <div class="form-group was-validated">
+        <p>Don't have an account? Register <a href="/registration">here</a>.</p>
+        </div>
+        </form>
+        
+	</div>
+	<!-- End Login Form -->
+
+</div>
+</body>
+

@@ -1,0 +1,20 @@
+<head>
+{{>header}}
+</head>
+<body>
+
+{{>nav}}
+<main>
+    <form id="article-builder" method="post" action="/save-article" enctype="multipart/form-data">
+        <label>Title</label>
+        <input required type="text" name="title"/>
+        <label>Author</label>
+        <input required type="text" name="author" value="{{user.firstName}} {{user.lastName}}"/>
+        <label>Image</label>
+        <input required type="file" name="image" accept="image/png, image/jpeg, image/gif"/>
+        <label>Content</label>
+        <textarea required autocorrect="on" name="content" cols="40" rows="15"></textarea><br>
+        <input class="action-button" style="max-width:50vw" type="submit">
+    </form>
+</main>
+</body>

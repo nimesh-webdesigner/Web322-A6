@@ -1,0 +1,60 @@
+<head>
+{{>header}}
+</head>
+<body>
+
+{{>nav}}
+<div class="container">
+    <div class="row">
+        {{#if article}}
+        <!--<img src="{{article.image_path}}"/>-->
+        <img src='data:image/png;base64,{{article.image}}'/>
+        <h1>{{article.headline}}</h1>
+        <h6>{{article.author}} - {{article.date}}</h6>
+        
+        <p>{{article.content}}</p>
+
+        <div id="comments">
+            {{#each comments}}
+            <div class="comment">
+                <h4>{{name}}</h4>
+                <h5>{{date}}</h5>
+                <p>{{comment}}</p>
+            </div>
+            {{/each}}
+        </div>
+        
+        <form name="article-reply" method="post" action="/comment">
+        <div class="form-row">
+		<div class="form-group">
+            <label for="comment">Comment:*</label>
+            </div>
+            <div class="form-group">
+            <textarea required autocorrect="on" name="comment" cols="40" rows="5"></textarea>
+            </div>
+            {{#if user}}
+            <div class="form-group">
+            <input name="name" type="hidden" value="{{user.userName}}"/>
+            <input name="email" type="hidden" value="{{user.email}}"/>
+            </div>
+            {{else}}
+            <div class="form-group">
+            <label for="name">Name:</label>
+            <input name="name" type="text"/>
+            <label for="email">Email:*</label>
+            <input required name="email" type="email"/>
+            </div>
+            {{/if}}
+            <div class="form-group">
+            <input class="btn btn-primary" type="submit" value="Comment"/>
+            <p style="margin-bottom:0px">* Required</p>
+            <input type="hidden" name="articleID" value="{{article._id}}"/>
+            </div>
+            </div>
+        </form>
+        {{else}}
+        <h1>Article not found</h1>
+        {{/if}}
+    </div>
+    </div>
+    </body>

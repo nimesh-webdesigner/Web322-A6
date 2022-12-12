@@ -1,0 +1,15 @@
+{{> nav}}
+<title>Edit Article</title>
+<main>
+    <form id="article-builder" method="post" action="/save-article" enctype="multipart/form-data">
+        <label>Title</label>
+        <input required type="text" name="title" value="{{article.headline}}"/>
+        <label>Author</label>
+        <input required type="text" name="author" value="{{article.author}}"/>
+        
+        <label>Content</label>
+        <textarea required autocorrect="on" name="content" cols="40" rows="15" >{{article.content}}</textarea><br>
+        <input class="action-button" style="max-width:50vw" type="submit" value="Save">
+        <input type="hidden" name="id" value="{{article._id}}"/>
+    </form>
+</main>

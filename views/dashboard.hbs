@@ -1,0 +1,58 @@
+<head>
+{{>header}}
+</head>
+<body>
+
+{{>nav}}
+
+<main id="dashboard">
+    <h1>Dashboard</h1>
+    <h3>Welcome, {{user.firstName}} {{user.lastName}}.</h3>
+    <div id="dashboard-grid">
+        <div id="account-info">
+            <h2>Account</h2>
+            <table>
+                <tr>
+                    <td>Username:</td>
+                    <td>{{user.userName}}</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>{{user.email}}</td>
+                </tr>
+                <tr>
+                    <td>Phone:</td>
+                    <td>{{user.phone}}</td>
+                </tr>
+            </table>
+        </div>
+
+        {{#if user.isAdmin}}
+        <div id="admin-panel">
+            <h2>Admin Panel</h2>
+            <p>Edit existing articles:</p>
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Date Posted</th>
+                </tr>
+                {{#each articles}}
+                <tr>
+                    <td>{{headline}}</td>
+                    <td>{{author}}</td>
+                    <td>{{date}}</td>
+                    <td><a href="/edit-article/{{_id}}"><button class="action-button">Edit</button></a></td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+        <a class="doubleCol" href="/create-article">
+            <button id="create-article-button" class="action-button">
+                Create Article
+            </button>
+        </a>
+        {{/if}}
+    </div>
+</main>
+</body>

@@ -1,0 +1,65 @@
+<head>
+{{>header}}
+</head>
+<body>
+
+{{>nav}}
+
+    <div class="container">
+    <div class="row">
+		<div class="col-md-12 col-md-offset-2 col-xs-12">
+        <h2>Create an Account</h2>
+        <form class="form-center" id="form" method="post" action="/register-user">
+        <div class="form-row">
+		<div class="form-group">
+            <input id="username" placeholder="Username" name="username" type="text" width="100%"/>
+        </div>
+        <div class="form-group">
+            <input id="firstName" placeholder="First Name" name="firstName" type="text"/>
+        </div>
+        <div class="form-group">
+            <input id="lastName" placeholder="Last Name" name="lastName" type="text"/>
+        </div>
+        <div class="form-group">
+            <input id="email" placeholder="Email Address" name="email" type="email"/>
+        </div>
+        <div class="form-group">
+            <input id="phone" placeholder="Phone Number" name="phone" type="tel"/>
+        </div>
+        <div class="form-group">
+            <input id="address" placeholder="Street Address" name="address" type="text"/>
+        </div>
+        <div class="form-group">
+            <input id="address2" placeholder="Address Line 2 (optional)" name="address2" type="text"/>
+        </div>
+        <div class="form-group">
+            <input id="city" placeholder="City" name="city" type="text"/>
+        </div>
+        <div class="form-group">
+            <input id="province" placeholder="Province/State" name="province" type="text"/>
+        </div>
+        <div class="form-group">
+            <input id="postal" placeholder="Postal/Zip Code" name="postal" type="text" maxlength="7"/>
+        </div>
+        <div class="form-group">
+            <input id="password" placeholder="Password" name="password" type="password"/>
+        </div>
+        <div class="form-group">
+            <input id="password2" placeholder="Confirm Password" name="password2" type="password"/>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn btn-primary"/>
+        </div>
+        <p>Already have an account? Log in <a href="/login">here</a>.</p>
+        </div>
+            
+        </form>
+        
+    </div>
+	</div>
+    </div>
+
+    <p id="error-popup"></p>
+    
+    {{>formscript post="'/register-user'" onsuccess="'/dashboard'"}}
+</body>

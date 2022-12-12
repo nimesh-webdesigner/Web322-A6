@@ -1,0 +1,57 @@
+<script>
+    function clearErrors(){
+        var formElems = Array.from(form.elements);
+        formElems.forEach(x=>x.classList.remove("formError"));
+    }
+
+    function clearError(elem){
+        elem.classList.remove("formError");
+    }
+
+
+    async function submit(){
+        clearErrors();
+        const fd = new FormData(form)
+
+        await fetch({{{post}}},{
+            method: 'POST',
+            body: fd
+        }).then(response => response.json())
+        .then((resp) =>
+        {
+            if (resp.error){
+                if (resp.error == "missing_vals")
+                {
+                    var formElems = Array.from(form.elements).filter(x=>x.value=="" || x.value=="Country...");
+                    formElems.forEach(x=>x.classList.add("formError"));
+
+                    let causePos = form.getBoundingClientRect();
+                    const elem = document.getElementById("error-popup")
+
+                    elem.innerText = resp.error_msg;
+                    elem.style.left = causePos.left.toString() + 'px';
+                    elem.style.top = (causePos.bottom - 15).toString() + 'px';
+                    elem.style.display="block";
+                }
+                else 
+                {
+                    let causePos = document.getElementById(resp.error).getBoundingClientRect();
+                    const elem = document.getElementById("error-popup")
+
+                    elem.innerText = resp.error_msg;
+                    elem.style.left = causePos.left.toString() + 'px';
+                    elem.style.top = (causePos.bottom - 15).toString() + 'px';
+                    elem.style.display="block";
+                }
+            } else if (resp.success) {                
+                window.location = "/dashboard";
+            }
+        });
+    }
+
+    const form = document.getElementById("form");
+    form.addEventListener('submit', async (e) =>{
+        e.preventDefault();
+        await submit();
+    });
+</script>
