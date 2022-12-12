@@ -69,13 +69,6 @@ app.use(express.static("static"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-/*app.use(clientSessions({
-    cookieName: "session",
-    secret: "web322_assignment5_nKIRJgoUsjugprOSK",
-    duration: 5 * 60 * 1000,
-    activeDuration: 3 * 1000 * 60 
-  }));*/
-
 
 const storage = multer.memoryStorage()
 const upload = multer({storage:storage});
